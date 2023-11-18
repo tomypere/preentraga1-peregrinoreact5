@@ -23,7 +23,7 @@ const ItemDetail = ({ productos }) => {
                         alt={dato.nombre}
                         style={{ maxWidth: '300px', height: 'auto', border: '2px solid #ccc', borderRadius: '10px' }}
                     />
-                    <Text style={{ fontFamily: 'Arial', fontSize: '16px', color: '#666' }}>{dato.description}</Text>
+                    <Text style={{ fontFamily: 'Arial', fontSize: '15px', color: '#666' }}>{dato.description}</Text>
                     <Text style={{ fontFamily: 'Verdana', fontSize: '14px', color: '#777' }}>{dato.category}</Text>
                 </CardBody>
                 <CardFooter style={{ backgroundColor: 'grey', padding: '10px', borderRadius: "10px" }}>

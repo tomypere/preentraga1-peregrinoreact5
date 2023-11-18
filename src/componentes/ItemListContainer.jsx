@@ -22,7 +22,7 @@ const ItemListContainer = () => {
     
     const { category } = useParams()
     const products = [
-      {id: 1, nombre: "Ryzen 7 5700x", description: "Procesador gama media", stock: 20, category: "Procesador", price: 1000, image: brand1},
+      {id: 1, nombre: "Ryzen 7 5700x", description: "Procesador gama media", stock: 20, category: "Procesador", image: brand1},
       {id: 2, nombre: "Ryzen 5 5600x", description: "Procesador gama baja", stock: 5, category: "Procesador", image: brand2},
       {id: 3, nombre: "Ryzen 9 7950x3d", description: "Procesador gama alta", stock: 40, category: "Procesador", image: brand3},
       {id: 4, nombre: "Ryzen 5 7600x", description: "Procesador gama media", stock: 30 , category: "Procesador", image: brand4},

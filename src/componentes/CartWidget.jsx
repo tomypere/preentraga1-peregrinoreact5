@@ -7,7 +7,7 @@ const CartWidget = () => {
     <div classname="carrito-container">
         <button>
         <img src="../imagenes/carrittt.png" class="carrito"></img>
-       <Badge colorScheme='purple'>5</Badge>
+       <Badge colorScheme='purple'></Badge>
       
        </button>
     </div>

@@ -1,45 +1,45 @@
-import React from 'react'
-import CartWidget from './CartWidget'
-import { Menu, MenuButton, MenuList, MenuItem, Flex, Box, Spacer } from '@chakra-ui/react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import CartWidget from './CartWidget';
+import { Menu, MenuButton, MenuList, MenuItem, Flex, Box, Spacer } from '@chakra-ui/react';
 
+const NavBar = () => {
+  return (
+    <div className='navbar'>
+      <Flex bg='skyblue' justifyContent='center' >
+        <Box p='4'>
+          <Link to={'/'}>
+            <img src="../imagenes/pclogo.jpeg" className="logo" alt="PC Logo" />
+          </Link>
+        </Box>
+        <Spacer />
+        <Spacer>
+          <Menu>
+            <MenuButton className="categ">COMPONENTES</MenuButton>
+            <MenuList>
+              <MenuItem>
+                <Link to='/category/Procesador'>Procesador</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to='/category/Placa-de-video'>Placa-de-video</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to='/category/Ram'>Ram</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to='/category/Motherboard'>Motherboard</Link>
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Spacer>
+        <Box p='4'>
+          <Link to={'/cart'}>
+            <CartWidget />
+          </Link>
+        </Box>
+      </Flex>
+    </div>
+  );
+};
 
-const NavBar = () =>{
-    return (
-        <div className='navbar'>
-            
-        
-            
-
-            <Flex>
-  <Box p='4' >
-  <img src="../imagenes/pclogo.jpeg" class="logo"></img>
-  </Box>
-  <Spacer />
-  <Spacer>
-  <Menu>
-  <MenuButton class="categ">
-    COMPONENTES
-  </MenuButton>
-  <MenuList>
-    <MenuItem>Pocesador</MenuItem>
-    <MenuItem>Placa de video</MenuItem>
-    <MenuItem>Ram</MenuItem>
-    <MenuItem>Gabinete</MenuItem>
-    <MenuItem>Fuente de poder</MenuItem>
-   
-  </MenuList>
-</Menu>
-  </Spacer>
-  <Box p='4'>
-    
-    <CartWidget/>
-  </Box>
-</Flex>
-
-           
-        </div>
-    )
-
-}
-
-export default NavBar
+export default NavBar;

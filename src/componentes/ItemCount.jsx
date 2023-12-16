@@ -1,39 +1,57 @@
-import {useState} from 'react'
-import { Button, Badge } from '@chakra-ui/react'
-import { useToast } from '@chakra-ui/react'
+import React, { useState } from 'react';
+import { Button, Badge, useToast } from '@chakra-ui/react';
+import { useCarrito } from './CartContext';
+import { doc,  getFirestore,getDoc, updateDoc} from "firebase/firestore"
 
-const ItemCount = () => {
-
-    const toast = useToast()
-     const [count, setCount] = useState(0)
+const ItemCount = ({ stock, idProducto }) => {
+    const toast = useToast();
+    const [count, setCount] = useState(1);
+    const { carrito, setCarrito } = useCarrito();
+    const id = idProducto
 
     const addToCart = () => {
         toast({
-            title: 'Felicitaciones',
-            description: `Has agregado ${count} unidades a tu carrito`, 
+            title: 'Felicidades',
+            description: `Compraste ${count} productos`,
             status: 'success',
             duration: 5000,
             isClosable: true,
-          })
+        });
+        const db = getFirestore()
+        const orderDoc = doc(db, "componentes", id)
+        getDoc(orderDoc).then((snapshot)=>{
+            let productoRepetido = false;
+            const documento = snapshot.data()
+            const productos = {idCodificado: id, nombreProducto: `${documento.Nombre}`, precioUnidad: `${documento.Precio}`,cantidad: count, precio: documento.Precio * count};
+            setCarrito(producto => [...producto, productos]);
+        })
     }
 
-    
 
 
-  return (
-    <div>
+    const decrement = () => {
+        setCount((prevCount) => Math.max(prevCount - 1, 1));
+    };
 
-<Button colorScheme='teal' variant='outline' onClick={() => setCount(count + 1)}>
-    +
-  </Button>
-  <Badge colorScheme='purple'>{count}</Badge>
-  <Button colorScheme='teal' variant='outline' onClick={() => setCount(count - 1)}>
-    -
-  </Button>
-  <Button colorScheme='linkedin' onClick= {addToCart} >Agregar al carrito</Button>
+    const increment = () => {
+        setCount((prevCount) => Math.min(prevCount + 1, stock));
+    };
 
-    </div>
-  )
-}
 
-export default ItemCount
+    return (
+        <div>
+            <Button colorScheme='teal' variant='outline' onClick={decrement}>
+                -
+            </Button>
+            <Badge colorScheme='purple'>{count.toString()}</Badge>
+            <Button colorScheme='teal' variant='outline' onClick={increment}>
+                +
+            </Button>
+            <Button colorScheme='linkedin' onClick={addToCart}>
+                Agregar al Carrito
+            </Button>
+        </div>
+    );
+};
+
+export default ItemCount;
